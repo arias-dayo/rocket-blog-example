@@ -1,0 +1,28 @@
+header {
+	height: 10em; /*ヘッダーの高さ*/
+	width: 100%; /*ヘッダーの横幅*/
+	background-color: #47B39D; /*ヘッダーの背景色*/
+	color: white; /*ヘッダーの文字の色*/
+}
+ 
+header p {
+    margin: 0%;
+    height: 70%;
+	font-size: 30px; /*文字の大きさ*/
+}
+ 
+header nav {
+    height: 30%;
+}
+
+nav ul {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+ 
+header li {
+	float: left; /*左に流す*/
+	margin-left: 30px; /*li間の幅を開くために左にマージンを取っている*/
+	list-style: none; /*デフォルトでついているliの黒点をnoneにしている*/
+}
