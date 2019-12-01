@@ -14,6 +14,7 @@ struct PostContext {
 // index.html.hbsを表示する
 #[get("/")]
 pub fn index() -> Template {
+    // Todo: postsを渡して、Template側はeachで記事の一覧を表示する
     Template::render("base/index", &TemplateContext {
         page_title: "ブログのタイトルが入るよ".to_string(),
     })
@@ -22,6 +23,7 @@ pub fn index() -> Template {
 // DBから受け取ったtitle, textを元にページを表示する
 #[get("/posts/<page>")]
 pub fn posts(page: u64) -> Template {
+    // TODO: DBからpostを取得するようにする
     let posts = posts::Posts {
         title: "記事のタイトル".to_string(),
         text: "記事の内容".to_string()
