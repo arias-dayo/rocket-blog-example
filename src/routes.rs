@@ -24,12 +24,9 @@ pub fn index() -> Template {
 #[get("/posts/<page>")]
 pub fn posts(page: u64) -> Template {
     // TODO: DBからpostを取得するようにする
-    let posts = posts::Posts {
-        title: "記事のタイトル".to_string(),
-        text: "記事の内容".to_string()
-    };
+ 
     Template::render("base/posts", &PostContext {
-        page_title: posts.title,
+        page_title: "記事のタイトルが入るよ".to_string(),
     })
 }
 
