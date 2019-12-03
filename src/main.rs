@@ -17,8 +17,9 @@ use routes::*;
 fn rocket() -> rocket::Rocket {
     rocket::ignite()
         .mount("/static", StaticFiles::from("static"))
-        .mount("/", routes![index, posts])
-        .register(catchers![not_found])
+        .mount("/", routes![contents::index, contents::posts, 
+                            authorize::login, authorize::admin])
+        .register(catchers![error::not_found])
         .attach(Template::fairing())
 }
 

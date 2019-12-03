@@ -2,7 +2,7 @@ use crate::models::*;
 use rocket_contrib::templates::{Template};
 
 #[derive(Serialize)]
-struct TemplateContext {
+struct IndexContext {
     page_title: String,
 }
 
@@ -15,25 +15,17 @@ struct PostContext {
 #[get("/")]
 pub fn index() -> Template {
     // Todo: postsを渡して、Template側はeachで記事の一覧を表示する
-    Template::render("base/index", &TemplateContext {
+    Template::render("base/index", &IndexContext {
         page_title: "ブログのタイトルが入るよ".to_string(),
     })
 }
 
 // DBから受け取ったtitle, textを元にページを表示する
-#[get("/posts/<page>")]
-pub fn posts(page: u64) -> Template {
+#[get("/posts/<id>")]
+pub fn posts(id: u64) -> Template {
     // TODO: DBからpostを取得するようにする
- 
+    
     Template::render("base/posts", &PostContext {
         page_title: "記事のタイトルが入るよ".to_string(),
-    })
-}
-
-// 404エラー
-#[catch(404)]
-pub fn not_found() -> Template {
-    Template::render("error/404", &TemplateContext {
-        page_title: "404エラー".to_string(),
     })
 }
