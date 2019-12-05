@@ -5,7 +5,7 @@ use rocket::response::Redirect;
 
 #[derive(Serialize)]
 struct LoginContext {
-    page_title: String,
+    title: String,
 }
 
 #[derive(Responder)]
@@ -32,6 +32,6 @@ pub fn admin() -> Template {
     // TODO: ログイン履歴にセッションが存在するかチェック
     
     Template::render("admin/login", &LoginContext {
-        page_title: "ログイン".to_string(),
+        title: "ログイン".to_string(),
     })
 }

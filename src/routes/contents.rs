@@ -1,14 +1,11 @@
-use crate::models::*;
 use rocket_contrib::templates::{Template};
+use crate::db;
+
+use crate::models::post::Post;
 
 #[derive(Serialize)]
 struct IndexContext {
-    page_title: String,
-}
-
-#[derive(Serialize)]
-struct PostContext {
-    page_title: String,
+    title: String,
 }
 
 // index.html.hbsを表示する
@@ -16,16 +13,15 @@ struct PostContext {
 pub fn index() -> Template {
     // Todo: postsを渡して、Template側はeachで記事の一覧を表示する
     Template::render("base/index", &IndexContext {
-        page_title: "ブログのタイトルが入るよ".to_string(),
+        title: "ブログのタイトルが入るよ".to_string(),
     })
 }
 
 // DBから受け取ったtitle, textを元にページを表示する
 #[get("/posts/<id>")]
-pub fn posts(id: u64) -> Template {
+pub fn posts(id: i32, connection: db::DbCon) -> Template {
     // TODO: DBからpostを取得するようにする
+    let post = Post::read_from_id(&connection, &id);
     
-    Template::render("base/posts", &PostContext {
-        page_title: "記事のタイトルが入るよ".to_string(),
-    })
+    Template::render("base/posts", post)
 }
