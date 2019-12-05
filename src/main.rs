@@ -20,7 +20,7 @@ fn rocket() -> rocket::Rocket {
         .mount("/static", StaticFiles::from("static"))
         .mount("/", routes![contents::index, contents::posts, 
                             authorize::login, authorize::admin])
-        .register(catchers![error::not_found, error::server_error])
+        .register(catchers![error::not_found])
         .attach(Template::fairing())
 }
 
