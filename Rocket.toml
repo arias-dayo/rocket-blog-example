@@ -1,2 +1,5 @@
 [global.databases.sqlite_database]
-url = "db/db.sqlite"
+url = "db.sqlite"
+
+[development]
+log = "debug"
