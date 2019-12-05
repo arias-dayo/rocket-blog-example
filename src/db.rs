@@ -5,12 +5,13 @@ use rocket::{Request, State, Outcome};
 use diesel::sqlite::SqliteConnection;
 use diesel::r2d2::{ConnectionManager, Pool, PooledConnection};
 
-// An alias to the type for a pool of Diesel Mysql Connection
 pub type ConnectionPool = Pool<ConnectionManager<SqliteConnection>>;
 
 // DBのコネクションプールを作成する。
 pub fn connect() -> ConnectionPool {
-    let manager = ConnectionManager::<SqliteConnection>::new("file:./db.sqlite");
+    let database_url: String = "file:./db.sqlite".to_string();
+
+    let manager = ConnectionManager::<SqliteConnection>::new(database_url);
     Pool::new(manager).expect("コネクションプールの作成に失敗しました。")
 }
 
